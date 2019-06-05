@@ -13,6 +13,7 @@ import { extend, mergeOptions, formatComponentName } from '../util/index'
 let uid = 0
 
 export function initMixin (Vue: Class<Component>) {
+  // 在这里定义了_init
   Vue.prototype._init = function (options?: Object) {
     const vm: Component = this
     // a uid
@@ -49,13 +50,18 @@ export function initMixin (Vue: Class<Component>) {
     }
     // expose real self
     vm._self = vm
+    // 生命周期
     initLifecycle(vm)
+    // 事件
     initEvents(vm)
+    // 渲染
     initRender(vm)
+    // 生命周期钩子
     callHook(vm, 'beforeCreate')
     initInjections(vm) // resolve injections before data/props
     initState(vm)
     initProvide(vm) // resolve provide after data/props
+    // 生命周期钩子
     callHook(vm, 'created')
 
     /* istanbul ignore if */
@@ -65,7 +71,12 @@ export function initMixin (Vue: Class<Component>) {
       measure(`vue ${vm._name} init`, startTag, endTag)
     }
 
+    // new Vue({
+    //   el:'#id'
+    // })
+    // 如果new的时候有el ，就调用$mount ， 和咱们手动调用$mount是一个意思
     if (vm.$options.el) {
+      // $mount 负责挂载
       vm.$mount(vm.$options.el)
     }
   }

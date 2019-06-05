@@ -15,6 +15,7 @@ const idToTemplate = cached(id => {
 })
 
 const mount = Vue.prototype.$mount
+// 挂了一个mount
 Vue.prototype.$mount = function (
   el?: string | Element,
   hydrating?: boolean
@@ -98,4 +99,6 @@ function getOuterHTML (el: Element): string {
 
 Vue.compile = compileToFunctions
 
+
+// 真正的对外暴露的Vue
 export default Vue

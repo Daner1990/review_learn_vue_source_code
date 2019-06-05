@@ -2,7 +2,9 @@
   "name": "vue",
   "version": "2.6.10",
   "description": "Reactive, component-oriented view layer for modern web interfaces.",
+  // 两个重要入口
   "main": "dist/vue.runtime.common.js",
+  //import Vue form 'vue'
   "module": "dist/vue.runtime.esm.js",
   "unpkg": "dist/vue.js",
   "jsdelivr": "dist/vue.js",
@@ -23,6 +25,7 @@
     "dev:weex": "rollup -w -c scripts/config.js --environment TARGET:weex-framework",
     "dev:weex:factory": "rollup -w -c scripts/config.js --environment TARGET:weex-factory",
     "dev:weex:compiler": "rollup -w -c scripts/config.js --environment TARGET:weex-compiler ",
+    //打包 构建入口
     "build": "node scripts/build.js",
     "build:ssr": "npm run build -- web-runtime-cjs,web-server-renderer",
     "build:weex": "npm run build -- weex",

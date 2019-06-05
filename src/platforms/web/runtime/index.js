@@ -34,6 +34,10 @@ extend(Vue.options.components, platformComponents)
 Vue.prototype.__patch__ = inBrowser ? patch : noop
 
 // public mount method
+// 两个$mount就是有没有compiler的区别
+// 写了template 还是render
+// 又挂了一个mount
+
 Vue.prototype.$mount = function (
   el?: string | Element,
   hydrating?: boolean

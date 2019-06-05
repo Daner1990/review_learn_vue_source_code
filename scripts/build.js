@@ -23,6 +23,7 @@ if (process.argv[2]) {
   })
 }
 
+//构建入口 执行项
 build(builds)
 
 function build (builds) {

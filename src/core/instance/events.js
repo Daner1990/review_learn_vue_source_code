@@ -10,6 +10,9 @@ import {
 import { updateListeners } from '../vdom/helpers/index'
 
 export function initEvents (vm: Component) {
+  // vm._events = {} has __proto__
+  // Object.create(null) 没有原型链上的方法 No properties
+
   vm._events = Object.create(null)
   vm._hasHookEvent = false
   // init parent attached events
@@ -50,7 +53,9 @@ export function updateComponentListeners (
 }
 
 export function eventsMixin (Vue: Class<Component>) {
+  // 内部调用都是hock开头的
   const hookRE = /^hook:/
+
   Vue.prototype.$on = function (event: string | Array<string>, fn: Function): Component {
     const vm: Component = this
     if (Array.isArray(event)) {
@@ -58,6 +63,11 @@ export function eventsMixin (Vue: Class<Component>) {
         vm.$on(event[i], fn)
       }
     } else {
+      // class Bus{
+
+      // }
+      // 发布订阅 一个数组
+
       (vm._events[event] || (vm._events[event] = [])).push(fn)
       // optimize hook:event cost by using a boolean flag marked at registration
       // instead of a hash lookup
